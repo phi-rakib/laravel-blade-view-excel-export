@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(StudentController::class)->group(function() {
+    Route::get('students', 'index');
+    Route::get('students/export', 'export')->name('students.export');
+    Route::get('students/table/export', 'exportTable')->name('students.table.export');
 });
